@@ -12,7 +12,7 @@
 
 *Real-time transaction analysis with neural network intelligence and futuristic UI*
 
-[🔗 Demo](#demo) • [📖 Documentation](#installation) • [🎯 Features](#features) • [🚀 Quick Start](#quick-start)
+[🔗 Demo](https://fraudnet.onrender.com/) • [📖 Documentation](#installation) • [🎯 Features](#features) • [🚀 Quick Start](#quick-start)
 
 </div>
 
