@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Enhanced cyberpunk CSS with more features
+# Enhanced responsive cyberpunk CSS
 st.markdown("""
 <style>
     /* Import cyberpunk fonts */
@@ -51,20 +51,28 @@ st.markdown("""
         100% { transform: translate(50px, 50px); }
     }
     
-    /* Enhanced terminal container */
+    /* Enhanced terminal container - responsive */
     .terminal-container {
         background: 
             linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 46, 0.9) 100%);
         border: 2px solid #00ff41;
         border-radius: 15px;
-        padding: 2rem;
-        margin: 1rem;
+        padding: 1rem;
+        margin: 0.5rem;
         box-shadow: 
             0 0 30px rgba(0, 255, 65, 0.4),
-            inset 0 0 30px rgba(0, 255, 65, 0.05),
-            0 0 100px rgba(0, 255, 65, 0.1);
+            inset 0 0 30px rgba(0, 255, 65, 0.05);
         position: relative;
         backdrop-filter: blur(10px);
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    
+    @media (min-width: 768px) {
+        .terminal-container {
+            padding: 2rem;
+            margin: 1rem;
+        }
     }
     
     .terminal-container::before {
@@ -79,55 +87,48 @@ st.markdown("""
         animation: borderScan 3s linear infinite;
     }
     
-    .terminal-container::after {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(45deg, #ff0080, #00ff41, #0080ff, #ff0080);
-        background-size: 400% 400%;
-        border-radius: 15px;
-        z-index: -1;
-        animation: borderGlow 4s ease-in-out infinite;
-        opacity: 0.7;
-    }
-    
     @keyframes borderScan {
         0% { background-position: 0% 0%; }
         100% { background-position: 200% 0%; }
     }
     
-    @keyframes borderGlow {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-    
-    /* Advanced cyberpunk header */
+    /* Responsive cyberpunk header */
     .cyber-header {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         position: relative;
-        padding: 2rem;
+        padding: 1rem;
         background: rgba(0, 0, 0, 0.6);
         border-radius: 12px;
         border: 1px solid rgba(0, 255, 65, 0.3);
     }
     
+    @media (min-width: 768px) {
+        .cyber-header {
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+    }
+    
     .cyber-title {
         font-family: 'Orbitron', monospace;
-        font-size: 4rem;
+        font-size: 2rem;
         font-weight: 900;
         background: linear-gradient(45deg, #ff0080, #00ff41, #0080ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         text-transform: uppercase;
-        letter-spacing: 4px;
+        letter-spacing: 2px;
         margin-bottom: 0.5rem;
         animation: glitchTitle 4s infinite;
-        filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
+    }
+    
+    @media (min-width: 768px) {
+        .cyber-title {
+            font-size: 4rem;
+            letter-spacing: 4px;
+        }
     }
     
     @keyframes glitchTitle {
@@ -143,54 +144,54 @@ st.markdown("""
             transform: translateX(2px) skew(-2deg);
             filter: drop-shadow(0 0 10px rgba(0, 128, 255, 0.5));
         }
-        93% { 
-            transform: translateX(-1px) skew(1deg);
-            filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
-        }
-        94% { 
-            transform: translateX(1px) skew(-1deg);
-            filter: drop-shadow(0 0 10px rgba(255, 0, 128, 0.5));
-        }
     }
     
     .cyber-subtitle {
         font-family: 'Share Tech Mono', monospace;
-        font-size: 1.3rem;
+        font-size: 0.9rem;
         color: #00ff41;
         font-weight: 400;
         text-transform: uppercase;
-        letter-spacing: 3px;
+        letter-spacing: 1px;
         opacity: 0.9;
-        animation: typewriter 3s steps(30) 1s both;
-        border-right: 2px solid #00ff41;
-        white-space: nowrap;
-        overflow: hidden;
     }
     
-    @keyframes typewriter {
-        0% { width: 0; }
-        99.9% { border-right: 2px solid #00ff41; }
-        100% { width: 100%; border: none; }
+    @media (min-width: 768px) {
+        .cyber-subtitle {
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+        }
     }
     
-    /* System status indicators */
+    /* Responsive status bar */
     .status-bar {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         background: rgba(0, 0, 0, 0.8);
         border: 1px solid #00ff41;
         border-radius: 8px;
-        padding: 1rem;
-        margin-bottom: 2rem;
+        padding: 0.8rem;
+        margin-bottom: 1.5rem;
         font-family: 'Share Tech Mono', monospace;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
+        gap: 0.5rem;
+    }
+    
+    @media (min-width: 768px) {
+        .status-bar {
+            flex-wrap: nowrap;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
     }
     
     .status-item {
         display: flex;
         align-items: center;
         color: #00ff41;
+        margin: 0.2rem 0;
     }
     
     .status-indicator {
@@ -207,7 +208,7 @@ st.markdown("""
         50% { opacity: 0.5; box-shadow: 0 0 10px #00ff41; }
     }
     
-    /* Enhanced input panels with holographic effects */
+    /* Enhanced responsive input panels */
     .input-panel {
         background: 
             linear-gradient(135deg, 
@@ -217,11 +218,17 @@ st.markdown("""
             );
         border: 1px solid #00ff41;
         border-radius: 12px;
-        padding: 1.8rem;
+        padding: 1rem;
         position: relative;
         overflow: hidden;
         transition: all 0.4s ease;
         margin-bottom: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+        .input-panel {
+            padding: 1.8rem;
+        }
     }
     
     .input-panel:hover {
@@ -229,61 +236,47 @@ st.markdown("""
             0 0 25px rgba(0, 255, 65, 0.5),
             inset 0 0 20px rgba(0, 255, 65, 0.1);
         border-color: #ff0080;
-        transform: translateY(-3px) scale(1.02);
-    }
-    
-    .input-panel::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #00ff41, transparent);
-        animation: holograms 3s infinite;
-    }
-    
-    .input-panel::after {
-        content: '';
-        position: absolute;
-        top: 10%;
-        right: -100%;
-        width: 2px;
-        height: 80%;
-        background: linear-gradient(0deg, transparent, #ff0080, transparent);
-        animation: holograms 2.5s infinite reverse;
-    }
-    
-    @keyframes holograms {
-        0% { left: -100%; right: -100%; }
-        50% { left: 100%; right: 100%; }
-        100% { left: -100%; right: -100%; }
+        transform: translateY(-2px) scale(1.01);
     }
     
     .panel-label {
         color: #00ff41;
         font-family: 'Share Tech Mono', monospace;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 0.8rem;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 1rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.8rem;
         text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-        position: relative;
-        z-index: 2;
     }
     
-    /* Advanced data stream */
+    @media (min-width: 768px) {
+        .panel-label {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+    }
+    
+    /* Responsive data stream */
     .data-stream {
         background: rgba(0, 0, 0, 0.95);
         border: 2px solid #0080ff;
         border-radius: 10px;
-        padding: 1.5rem;
+        padding: 1rem;
         margin: 1.5rem 0;
         font-family: 'Share Tech Mono', monospace;
-        font-size: 1rem;
+        font-size: 0.8rem;
         position: relative;
         overflow: hidden;
+        overflow-x: auto;
+    }
+    
+    @media (min-width: 768px) {
+        .data-stream {
+            padding: 1.5rem;
+            font-size: 1rem;
+        }
     }
     
     .data-stream::before {
@@ -294,9 +287,15 @@ st.markdown("""
         background: #0a0a0a;
         color: #0080ff;
         padding: 0 10px;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         font-weight: bold;
         letter-spacing: 1px;
+    }
+    
+    @media (min-width: 768px) {
+        .data-stream::before {
+            font-size: 0.8rem;
+        }
     }
     
     .stream-line {
@@ -305,6 +304,14 @@ st.markdown("""
         opacity: 0;
         animation: dataFlow 0.8s ease-in-out forwards;
         text-shadow: 0 0 5px rgba(0, 128, 255, 0.5);
+        white-space: nowrap;
+    }
+    
+    @media (max-width: 767px) {
+        .stream-line {
+            white-space: normal;
+            word-break: break-all;
+        }
     }
     
     .stream-line:nth-child(1) { animation-delay: 0.1s; color: #00ff41; }
@@ -318,56 +325,33 @@ st.markdown("""
         100% { opacity: 1; transform: translateX(0) scale(1); }
     }
     
-    /* Enhanced neural loading */
+    /* Responsive neural loading */
     .neural-loading {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 3rem 0;
+        margin: 2rem 0;
         position: relative;
     }
     
     .neural-spinner {
-        width: 120px;
-        height: 120px;
-        border: 4px solid transparent;
-        border-top: 4px solid #00ff41;
-        border-right: 4px solid #ff0080;
-        border-bottom: 4px solid #0080ff;
+        width: 80px;
+        height: 80px;
+        border: 3px solid transparent;
+        border-top: 3px solid #00ff41;
+        border-right: 3px solid #ff0080;
+        border-bottom: 3px solid #0080ff;
         border-radius: 50%;
         animation: neuralSpin 1.2s linear infinite;
-        position: relative;
-        filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.5));
     }
     
-    .neural-spinner::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 60px;
-        height: 60px;
-        border: 3px solid transparent;
-        border-top: 3px solid #ff0080;
-        border-left: 3px solid #0080ff;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        animation: neuralSpin 0.8s linear infinite reverse;
-    }
-    
-    .neural-spinner::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 30px;
-        height: 30px;
-        border: 2px solid transparent;
-        border-top: 2px solid #00ff41;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        animation: neuralSpin 0.5s linear infinite;
+    @media (min-width: 768px) {
+        .neural-spinner {
+            width: 120px;
+            height: 120px;
+            border-width: 4px;
+        }
     }
     
     @keyframes neuralSpin {
@@ -376,12 +360,21 @@ st.markdown("""
     }
     
     .loading-text {
-        margin-top: 1.5rem;
+        margin-top: 1rem;
         font-family: 'Share Tech Mono', monospace;
         color: #00ff41;
-        font-size: 1.1rem;
-        letter-spacing: 2px;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
         animation: loadingPulse 1.5s ease-in-out infinite;
+        text-align: center;
+    }
+    
+    @media (min-width: 768px) {
+        .loading-text {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-top: 1.5rem;
+        }
     }
     
     @keyframes loadingPulse {
@@ -389,13 +382,13 @@ st.markdown("""
         50% { opacity: 1; }
     }
     
-    /* Advanced status display */
+    /* Responsive status display */
     .status-display {
         background: 
             radial-gradient(ellipse at center, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 10, 0.9) 100%);
         border: 3px solid #00ff41;
         border-radius: 15px;
-        padding: 3rem;
+        padding: 2rem 1rem;
         margin: 2rem 0;
         text-align: center;
         position: relative;
@@ -403,39 +396,21 @@ st.markdown("""
         overflow: hidden;
     }
     
-    .status-display::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: 
-            conic-gradient(from 0deg, transparent, rgba(0, 255, 65, 0.1), transparent);
-        animation: statusRotate 4s linear infinite;
-        z-index: -1;
-    }
-    
-    @keyframes statusRotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    @media (min-width: 768px) {
+        .status-display {
+            padding: 3rem;
+        }
     }
     
     @keyframes statusPowerUp {
         0% { 
             opacity: 0;
-            transform: scale(0.5) rotateX(90deg);
+            transform: scale(0.5);
             border-color: transparent;
-        }
-        30% { 
-            border-color: #ff0080;
-        }
-        60% { 
-            border-color: #0080ff;
         }
         100% { 
             opacity: 1;
-            transform: scale(1) rotateX(0deg);
+            transform: scale(1);
             border-color: #00ff41;
         }
     }
@@ -447,11 +422,6 @@ st.markdown("""
             inset 0 0 40px rgba(255, 0, 128, 0.1) !important;
     }
     
-    .status-fraud::before {
-        background: 
-            conic-gradient(from 0deg, transparent, rgba(255, 0, 128, 0.2), transparent);
-    }
-    
     .status-safe {
         border-color: #00ff41 !important;
         box-shadow: 
@@ -461,13 +431,20 @@ st.markdown("""
     
     .status-text {
         font-family: 'Orbitron', monospace;
-        font-size: 3rem;
+        font-size: 1.5rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 4px;
-        margin-bottom: 1.5rem;
-        position: relative;
-        z-index: 2;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        word-break: break-word;
+    }
+    
+    @media (min-width: 768px) {
+        .status-text {
+            font-size: 3rem;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
     }
     
     .status-fraud .status-text {
@@ -484,67 +461,54 @@ st.markdown("""
     
     @keyframes dangerPulse {
         0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.8; transform: scale(1.05); }
+        50% { opacity: 0.8; transform: scale(1.02); }
     }
     
     @keyframes safePulse {
         0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.9; transform: scale(1.02); }
+        50% { opacity: 0.9; transform: scale(1.01); }
     }
     
-    /* Enhanced button */
-    .cmd-button {
+    /* Responsive enhanced button */
+    .stButton > button {
         background: 
             linear-gradient(45deg, 
                 rgba(0, 0, 0, 0.9) 0%, 
                 rgba(26, 26, 46, 0.8) 50%, 
                 rgba(0, 0, 0, 0.9) 100%
             );
-        border: 2px solid #00ff41;
-        color: #00ff41;
-        padding: 1.5rem 4rem;
-        font-family: 'Orbitron', monospace;
-        font-size: 1.2rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        cursor: pointer;
-        border-radius: 8px;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        border: 2px solid #00ff41 !important;
+        color: #00ff41 !important;
+        padding: 1rem 2rem !important;
+        font-family: 'Orbitron', monospace !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 2px !important;
+        border-radius: 8px !important;
+        transition: all 0.4s ease !important;
+        position: relative !important;
+        overflow: hidden !important;
+        width: 100% !important;
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3) !important;
     }
     
-    .cmd-button:hover {
+    @media (min-width: 768px) {
+        .stButton > button {
+            padding: 1.5rem 4rem !important;
+            font-size: 1.2rem !important;
+            letter-spacing: 3px !important;
+        }
+    }
+    
+    .stButton > button:hover {
         background: 
-            linear-gradient(45deg, #00ff41, #0080ff, #ff0080);
-        color: #000000;
+            linear-gradient(45deg, #00ff41, #0080ff, #ff0080) !important;
+        color: #000000 !important;
         box-shadow: 
             0 0 30px rgba(0, 255, 65, 0.7),
-            0 0 50px rgba(0, 255, 65, 0.4);
-        transform: translateY(-5px) scale(1.05);
-        text-shadow: none;
-    }
-    
-    .cmd-button::before {
-        content: '> EXECUTE ';
-        font-weight: bold;
-    }
-    
-    .cmd-button::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s ease;
-    }
-    
-    .cmd-button:hover::after {
-        left: 100%;
+            0 0 50px rgba(0, 255, 65, 0.4) !important;
+        transform: translateY(-3px) scale(1.05) !important;
     }
     
     /* Hide streamlit elements */
@@ -553,9 +517,15 @@ st.markdown("""
     header {visibility: hidden;}
     .stDeployButton {display: none;}
     
-    /* Custom scrollbar */
+    /* Custom responsive scrollbar */
     ::-webkit-scrollbar {
-        width: 10px;
+        width: 8px;
+    }
+    
+    @media (min-width: 768px) {
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
     }
     
     ::-webkit-scrollbar-track {
@@ -572,6 +542,33 @@ st.markdown("""
         background: linear-gradient(45deg, #ff0080, #00ff41);
     }
     
+    /* Responsive columns */
+    @media (max-width: 767px) {
+        .stColumns {
+            flex-direction: column !important;
+        }
+        
+        .stColumn {
+            width: 100% !important;
+            margin-bottom: 1rem !important;
+        }
+    }
+    
+    /* Fix input field defaults */
+    .stNumberInput input {
+        background: rgba(0, 0, 0, 0.7) !important;
+        border: 1px solid #00ff41 !important;
+        color: #ffffff !important;
+        border-radius: 5px !important;
+    }
+    
+    .stSelectbox select {
+        background: rgba(0, 0, 0, 0.7) !important;
+        border: 1px solid #00ff41 !important;
+        color: #ffffff !important;
+        border-radius: 5px !important;
+    }
+    
     /* Particle effects */
     .particles {
         position: fixed;
@@ -581,6 +578,7 @@ st.markdown("""
         height: 100%;
         pointer-events: none;
         z-index: -1;
+        overflow: hidden;
     }
     
     .particle {
@@ -596,7 +594,6 @@ st.markdown("""
         0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
         50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
     }
-    
 </style>
 """, unsafe_allow_html=True)
 
@@ -656,12 +653,24 @@ st.markdown(f"""
     </div>
     <div class="status-item">
         <div class="status-indicator"></div>
-        SECURITY: MAXIMUM
+        SECURITY: MAX
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 if model is not None:
+    # Initialize session state for inputs to remove default values
+    if 'amount' not in st.session_state:
+        st.session_state.amount = 0.0
+    if 'oldbalanceOrg' not in st.session_state:
+        st.session_state.oldbalanceOrg = 0.0
+    if 'newbalanceOrig' not in st.session_state:
+        st.session_state.newbalanceOrig = 0.0
+    if 'oldbalanceDest' not in st.session_state:
+        st.session_state.oldbalanceDest = 0.0
+    if 'newbalanceDest' not in st.session_state:
+        st.session_state.newbalanceDest = 0.0
+    
     # Transaction data input
     st.markdown("### 📡 NEURAL INTERFACE - DATA INPUT PROTOCOL")
     
@@ -674,30 +683,50 @@ if model is not None:
         st.markdown('</div>', unsafe_allow_html=True)
         
         st.markdown('<div class="input-panel">', unsafe_allow_html=True)
-        st.markdown('<div class="panel-label">💰 CREDIT TRANSFER AMOUNT</div>', unsafe_allow_html=True)
-        amount = st.number_input("", min_value=0.0, value=1000.0, format="%.2f", label_visibility="collapsed")
+        st.markdown('<div class="panel-label">💰 TRANSFER AMOUNT</div>', unsafe_allow_html=True)
+        amount = st.number_input("", min_value=0.0, value=st.session_state.amount, format="%.2f", 
+                                label_visibility="collapsed", key="amount_input", 
+                                placeholder="Enter amount...")
+        if amount != st.session_state.amount:
+            st.session_state.amount = amount
         st.markdown('</div>', unsafe_allow_html=True)
     
     with col2:
         st.markdown('<div class="input-panel">', unsafe_allow_html=True)
         st.markdown('<div class="panel-label">📊 SOURCE BALANCE [BEFORE]</div>', unsafe_allow_html=True)
-        oldbalanceOrg = st.number_input("", min_value=0.0, value=10000.0, format="%.2f", label_visibility="collapsed", key="old_orig")
+        oldbalanceOrg = st.number_input("", min_value=0.0, value=st.session_state.oldbalanceOrg, format="%.2f", 
+                                       label_visibility="collapsed", key="old_orig", 
+                                       placeholder="Enter source balance before...")
+        if oldbalanceOrg != st.session_state.oldbalanceOrg:
+            st.session_state.oldbalanceOrg = oldbalanceOrg
         st.markdown('</div>', unsafe_allow_html=True)
         
         st.markdown('<div class="input-panel">', unsafe_allow_html=True)
         st.markdown('<div class="panel-label">📈 SOURCE BALANCE [AFTER]</div>', unsafe_allow_html=True)
-        newbalanceOrig = st.number_input("", min_value=0.0, value=9000.0, format="%.2f", label_visibility="collapsed", key="new_orig")
+        newbalanceOrig = st.number_input("", min_value=0.0, value=st.session_state.newbalanceOrig, format="%.2f", 
+                                        label_visibility="collapsed", key="new_orig",
+                                        placeholder="Enter source balance after...")
+        if newbalanceOrig != st.session_state.newbalanceOrig:
+            st.session_state.newbalanceOrig = newbalanceOrig
         st.markdown('</div>', unsafe_allow_html=True)
     
     with col3:
         st.markdown('<div class="input-panel">', unsafe_allow_html=True)
         st.markdown('<div class="panel-label">📡 TARGET BALANCE [BEFORE]</div>', unsafe_allow_html=True)
-        oldbalanceDest = st.number_input("", min_value=0.0, value=0.0, format="%.2f", label_visibility="collapsed", key="old_dest")
+        oldbalanceDest = st.number_input("", min_value=0.0, value=st.session_state.oldbalanceDest, format="%.2f", 
+                                        label_visibility="collapsed", key="old_dest",
+                                        placeholder="Enter target balance before...")
+        if oldbalanceDest != st.session_state.oldbalanceDest:
+            st.session_state.oldbalanceDest = oldbalanceDest
         st.markdown('</div>', unsafe_allow_html=True)
         
         st.markdown('<div class="input-panel">', unsafe_allow_html=True)
         st.markdown('<div class="panel-label">🎯 TARGET BALANCE [AFTER]</div>', unsafe_allow_html=True)
-        newbalanceDest = st.number_input("", min_value=0.0, value=0.0, format="%.2f", label_visibility="collapsed", key="new_dest")
+        newbalanceDest = st.number_input("", min_value=0.0, value=st.session_state.newbalanceDest, format="%.2f", 
+                                        label_visibility="collapsed", key="new_dest",
+                                        placeholder="Enter target balance after...")
+        if newbalanceDest != st.session_state.newbalanceDest:
+            st.session_state.newbalanceDest = newbalanceDest
         st.markdown('</div>', unsafe_allow_html=True)
     
     # Enhanced data stream display
@@ -718,9 +747,7 @@ if model is not None:
     # Neural network analysis button
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        analyze_button = st.button("NEURAL SCAN", key="analyze", help="Execute advanced fraud detection algorithm")
-        if analyze_button:
-            st.markdown('<style>.cmd-button { all: unset; }</style>', unsafe_allow_html=True)
+        analyze_button = st.button("⚡ EXECUTE NEURAL SCAN", type="primary", use_container_width=True)
     
     # Enhanced analysis results
     if analyze_button:
@@ -753,15 +780,15 @@ if model is not None:
             status_class = "status-fraud" if is_fraud else "status-safe"
             
             if is_fraud:
-                status_icon = "🚨 CRITICAL THREAT DETECTED 🚨"
-                status_message = "FRAUDULENT ACTIVITY CONFIRMED"
+                status_icon = "🚨 THREAT DETECTED 🚨"
+                status_message = "FRAUDULENT ACTIVITY"
                 threat_level = "MAXIMUM"
-                recommendation = "IMMEDIATE SECURITY PROTOCOL ACTIVATION REQUIRED"
+                recommendation = "BLOCK TRANSACTION IMMEDIATELY"
             else:
-                status_icon = "✅ TRANSACTION VERIFIED SECURE ✅"
-                status_message = "LEGITIMATE TRANSACTION CONFIRMED"
+                status_icon = "✅ TRANSACTION SECURE ✅"
+                status_message = "LEGITIMATE TRANSACTION"
                 threat_level = "MINIMAL"
-                recommendation = "TRANSACTION APPROVED FOR PROCESSING"
+                recommendation = "APPROVE TRANSACTION"
             
             # Calculate additional metrics
             confidence_score = max(prediction_proba[0]) * 100 if prediction_proba is not None else 85
@@ -771,14 +798,14 @@ if model is not None:
             st.markdown(f"""
             <div class="status-display {status_class}">
                 <div class="status-text">{status_message}</div>
-                <div style="color: #ffffff; font-size: 1.5rem; font-family: 'Rajdhani', sans-serif; margin: 1rem 0;">
+                <div style="color: #ffffff; font-size: 1.2rem; font-family: 'Rajdhani', sans-serif; margin: 1rem 0;">
                     {status_icon}
                 </div>
-                <div style="color: #0080ff; font-size: 1.3rem; margin-top: 1.5rem; font-family: 'Share Tech Mono', monospace;">
+                <div style="color: #0080ff; font-size: 1rem; margin-top: 1rem; font-family: 'Share Tech Mono', monospace;">
                     NEURAL CONFIDENCE: {confidence_score:.1f}%
                 </div>
-                <div style="color: #00ff41; font-size: 1rem; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace;">
-                    THREAT LEVEL: {threat_level} | PATTERNS ANALYZED: {neural_patterns} | SCAN DEPTH: {scan_depth}%
+                <div style="color: #00ff41; font-size: 0.8rem; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace;">
+                    THREAT: {threat_level} | PATTERNS: {neural_patterns} | DEPTH: {scan_depth}%
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -791,37 +818,16 @@ if model is not None:
                     border: 2px solid #ff0080; 
                     border-radius: 10px;
                     padding: 1.5rem; 
-                    margin: 2rem 0; 
-                    position: relative;
-                    overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; 
-                         background: linear-gradient(90deg, #ff0080, transparent, #ff0080); 
-                         animation: dangerScan 2s linear infinite;"></div>
+                    margin: 2rem 0;">
                     <strong style="color: #ff0080; font-size: 1.2rem; font-family: 'Orbitron', monospace;">
                         ⚠️ SECURITY BREACH DETECTED
                     </strong>
                     <div style="color: #ffffff; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem;">
-                        • Neural patterns indicate {confidence_score:.1f}% probability of fraudulent activity<br>
-                        • Risk factors: Suspicious balance changes and transaction timing<br>
+                        • Neural patterns indicate {confidence_score:.1f}% probability of fraud<br>
+                        • Risk factors: Suspicious balance changes detected<br>
                         • {recommendation}<br>
-                        • Flagged for human review and additional verification
+                        • Flagged for immediate human review
                     </div>
-                </div>
-                <style>
-                @keyframes dangerScan {{
-                    0% {{ background-position: -100% 0; }}
-                    100% {{ background-position: 100% 0; }}
-                }}
-                </style>
-                """, unsafe_allow_html=True)
-                
-                # Additional fraud metrics
-                st.markdown(f"""
-                <div class="data-stream" style="border-color: #ff0080;">
-                    <div class="stream-line" style="color: #ff0080;">> FRAUD_PROBABILITY: {confidence_score:.1f}%</div>
-                    <div class="stream-line" style="color: #ff0080;">> RISK_ASSESSMENT: HIGH_ANOMALY_DETECTED</div>
-                    <div class="stream-line" style="color: #ff0080;">> NEURAL_FLAGS: PATTERN_MISMATCH_CRITICAL</div>
-                    <div class="stream-line" style="color: #ff0080;">> RECOMMENDATION: BLOCK_AND_INVESTIGATE</div>
                 </div>
                 """, unsafe_allow_html=True)
                 
@@ -832,37 +838,16 @@ if model is not None:
                     border: 2px solid #00ff41; 
                     border-radius: 10px;
                     padding: 1.5rem; 
-                    margin: 2rem 0; 
-                    position: relative;
-                    overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; 
-                         background: linear-gradient(90deg, #00ff41, transparent, #00ff41); 
-                         animation: safeScan 2s linear infinite;"></div>
+                    margin: 2rem 0;">
                     <strong style="color: #00ff41; font-size: 1.2rem; font-family: 'Orbitron', monospace;">
-                        ✅ TRANSACTION SECURITY VERIFIED
+                        ✅ TRANSACTION VERIFIED
                     </strong>
                     <div style="color: #ffffff; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem;">
                         • Neural network confidence: {confidence_score:.1f}% legitimate<br>
-                        • All parameters within normal behavioral ranges<br>
+                        • All parameters within normal ranges<br>
                         • {recommendation}<br>
-                        • Transaction cleared for immediate processing
+                        • Transaction cleared for processing
                     </div>
-                </div>
-                <style>
-                @keyframes safeScan {{
-                    0% {{ background-position: -100% 0; }}
-                    100% {{ background-position: 100% 0; }}
-                }}
-                </style>
-                """, unsafe_allow_html=True)
-                
-                # Safe transaction metrics
-                st.markdown(f"""
-                <div class="data-stream" style="border-color: #00ff41;">
-                    <div class="stream-line" style="color: #00ff41;">> LEGITIMACY_SCORE: {confidence_score:.1f}%</div>
-                    <div class="stream-line" style="color: #00ff41;">> RISK_ASSESSMENT: LOW_STANDARD_BEHAVIOR</div>
-                    <div class="stream-line" style="color: #00ff41;">> NEURAL_FLAGS: ALL_PARAMETERS_NORMAL</div>
-                    <div class="stream-line" style="color: #00ff41;">> RECOMMENDATION: APPROVE_TRANSACTION</div>
                 </div>
                 """, unsafe_allow_html=True)
                 
@@ -874,29 +859,22 @@ if model is not None:
                 border-radius: 10px;
                 padding: 2rem; 
                 margin: 2rem 0; 
-                text-align: center;
-                animation: errorPulse 1s ease-in-out infinite;">
+                text-align: center;">
                 <strong style="color: #ff0000; font-size: 1.5rem; font-family: 'Orbitron', monospace;">
                     ❌ CRITICAL SYSTEM ERROR ❌
                 </strong>
                 <div style="color: #ffffff; margin-top: 1rem; font-family: 'Share Tech Mono', monospace;">
                     NEURAL NETWORK MALFUNCTION DETECTED<br>
-                    ERROR_CODE: {str(e)[:50]}...<br>
+                    ERROR: {str(e)[:50]}...<br>
                     ATTEMPTING SYSTEM RECOVERY...
                 </div>
             </div>
-            <style>
-            @keyframes errorPulse {{
-                0%, 100% {{ border-color: #ff0000; }}
-                50% {{ border-color: #ff6666; }}
-            }}
-            </style>
             """, unsafe_allow_html=True)
 
 else:
     st.markdown("""
     <div class="status-display" style="border-color: #ff0000;">
-        <div style="color: #ff0000; font-size: 2.5rem; font-family: 'Orbitron', monospace; animation: errorFlash 1.5s infinite;">
+        <div style="color: #ff0000; font-size: 2rem; font-family: 'Orbitron', monospace;">
             🔧 SYSTEM CRITICAL ERROR 🔧
         </div>
         <div style="color: #ffffff; margin-top: 1.5rem; font-family: 'Rajdhani', sans-serif; font-size: 1.2rem;">
@@ -904,29 +882,22 @@ else:
             Please load fraud_detection_model.pkl to activate AI systems
         </div>
         <div style="color: #ff0080; margin-top: 1rem; font-family: 'Share Tech Mono', monospace;">
-            STATUS: CRITICAL | NEURAL_NET: DISCONNECTED | SECURITY: COMPROMISED
+            STATUS: CRITICAL | NEURAL_NET: DISCONNECTED
         </div>
     </div>
-    <style>
-    @keyframes errorFlash {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-    }
-    </style>
     """, unsafe_allow_html=True)
 
-# Enhanced footer with system info
+# Enhanced footer
 st.markdown(f"""
-<div style="text-align: center; margin-top: 4rem; padding: 2rem; 
+<div style="text-align: center; margin-top: 3rem; padding: 1.5rem; 
      background: rgba(0, 0, 0, 0.8); border-radius: 10px; 
      border: 1px solid rgba(0, 255, 65, 0.3);">
-    <div style="color: #00ff41; font-family: 'Orbitron', monospace; font-size: 1.1rem; margin-bottom: 1rem;">
+    <div style="color: #00ff41; font-family: 'Orbitron', monospace; font-size: 1rem; margin-bottom: 0.5rem;">
         🔒 FRAUDNET AI NEURAL SECURITY SYSTEM 🔒
     </div>
-    <div style="color: #0080ff; font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; line-height: 1.6;">
+    <div style="color: #0080ff; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; line-height: 1.4;">
         VERSION: 2.1.0 | BUILD: {random.randint(2024001, 2024999)} | UPTIME: {random.randint(99, 100)}.{random.randint(80, 99)}%<br>
-        NEURAL_PATTERNS: {random.randint(10000, 99999)} | THREAT_DATABASE: UPDATED | QUANTUM_ENCRYPTION: ACTIVE<br>
-        <span style="color: #ff0080;">POWERED BY ADVANCED MACHINE LEARNING • SECURE • RELIABLE • AUTONOMOUS</span>
+        <span style="color: #ff0080;">POWERED BY ADVANCED ML • SECURE • RELIABLE • AUTONOMOUS</span>
     </div>
 </div>
 </div>
